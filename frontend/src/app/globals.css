@@ -1,0 +1,169 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─── QuantumFlow Terminal Design System ─────────────────── */
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOV.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOV.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('https://fonts.gstatic.com/s/spacegrotesk/v16/V8mDoQDjQSkFtoMM3T6r8E7mPbF4Cw.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Space Grotesk', sans-serif;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  /* QuantumFlow custom colors */
+  --color-profit: #10b981;
+  --color-loss: #f43f5e;
+  --color-warning: #fbbf24;
+  --color-active: #22d3ee;
+  --color-void: #0a0a0a;
+  --color-surface: #18181b;
+  --color-grid: #27272a;
+}
+
+:root {
+  --radius: 0.125rem;
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --card: #18181b;
+  --card-foreground: #fafafa;
+  --popover: #18181b;
+  --popover-foreground: #fafafa;
+  --primary: #22d3ee;
+  --primary-foreground: #0a0a0a;
+  --secondary: #27272a;
+  --secondary-foreground: #fafafa;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+  --accent: #27272a;
+  --accent-foreground: #fafafa;
+  --destructive: #f43f5e;
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #22d3ee;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-void text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow: hidden;
+  }
+}
+
+@layer utilities {
+  /* Terminal monospace for all numerical data */
+  .font-data {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .font-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Tick flash animations */
+  .tick-up {
+    animation: tick-flash-up 0.15s ease-out;
+  }
+  .tick-down {
+    animation: tick-flash-down 0.15s ease-out;
+  }
+
+  @keyframes tick-flash-up {
+    0% { background-color: rgba(16, 185, 129, 0.3); }
+    100% { background-color: transparent; }
+  }
+  @keyframes tick-flash-down {
+    0% { background-color: rgba(244, 63, 94, 0.3); }
+    100% { background-color: transparent; }
+  }
+
+  /* Glow effects for regime badges */
+  .glow-green {
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.4), 0 0 16px rgba(16, 185, 129, 0.2);
+  }
+  .glow-red {
+    box-shadow: 0 0 8px rgba(244, 63, 94, 0.4), 0 0 16px rgba(244, 63, 94, 0.2);
+  }
+  .glow-amber {
+    box-shadow: 0 0 8px rgba(251, 191, 36, 0.4), 0 0 16px rgba(251, 191, 36, 0.2);
+  }
+  .glow-cyan {
+    box-shadow: 0 0 8px rgba(34, 211, 238, 0.4), 0 0 16px rgba(34, 211, 238, 0.2);
+  }
+
+  /* Scrollbar styling */
+  .terminal-scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .terminal-scroll::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  .terminal-scroll::-webkit-scrollbar-thumb {
+    background: #3f3f46;
+    border-radius: 0;
+  }
+  .terminal-scroll::-webkit-scrollbar-thumb:hover {
+    background: #52525b;
+  }
+
+  /* Dense table rows */
+  .dense-row {
+    height: 28px;
+    line-height: 28px;
+  }
+}
